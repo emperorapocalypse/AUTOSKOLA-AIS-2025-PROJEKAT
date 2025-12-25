@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\Autoskola.BLL\\Autoskola.BLL.csproj": {}
+    "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Autoskola.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\Autoskola.BLL\\Autoskola.BLL.csproj": {
+    "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Autoskola.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\Autoskola.BLL\\Autoskola.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Autoskola.BLL.csproj",
         "projectName": "Autoskola.BLL",
-        "projectPath": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\Autoskola.BLL\\Autoskola.BLL.csproj",
+        "projectPath": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Autoskola.BLL.csproj",
         "packagesPath": "C:\\Users\\abilb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\Autoskola.BLL\\obj\\",
+        "outputPath": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
