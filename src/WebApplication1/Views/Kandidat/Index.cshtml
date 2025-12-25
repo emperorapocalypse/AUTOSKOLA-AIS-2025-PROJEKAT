@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Autoskola.DAL.Models.Kandidat>
+
+@{
+    ViewData["Title"] = "Lista Kandidata";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Lista Kandidata</h1>
+    
+    <p>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Dodaj Novog Kandidata
+        </a>
+    </p>
+
+    <table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Slika</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>JMBG</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Datum Upisa</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var kandidat in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(kandidat.ProfilnaSlika))
+                        {
+                            <img src="@kandidat.ProfilnaSlika" alt="@kandidat.Ime @kandidat.Prezime" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; border-radius: 4px;">
+                                <span>@kandidat.Ime.Substring(0, 1)@kandidat.Prezime.Substring(0, 1)</span>
+                            </div>
+                        }
+                    </td>
+                    <td>@kandidat.Ime</td>
+                    <td>@kandidat.Prezime</td>
+                    <td>@kandidat.JMBG</td>
+                    <td>@kandidat.Telefon</td>
+                    <td>@kandidat.Email</td>
+                    <td>@kandidat.DatumUpisa.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@kandidat.Id" class="btn btn-info btn-sm">
+                            Detalji
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@kandidat.Id" class="btn btn-warning btn-sm">
+                            Izmeni
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@kandidat.Id" class="btn btn-danger btn-sm">
+                            Obriši
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="8" class="text-center">
+                    <em>Nema kandidata u bazi. Kliknite "Dodaj Novog Kandidata" da dodate prvog.</em>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,21 +1,34 @@
 using Autoskola.DAL.Data;
 using Microsoft.EntityFrameworkCore;
+using Autoskola.BLL.Interfaces;
+using Autoskola.BLL.Services;
+using Autoskola.MVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
+
 
 builder.Services.AddDbContext<AutoskolaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+builder.Services.AddScoped<IKandidatService, KandidatService>();
+builder.Services.AddScoped<IInstruktorService, InstruktorService>();
+builder.Services.AddScoped<IVoziloService, VoziloService>();
+builder.Services.AddScoped<ICasService, CasService>();
+builder.Services.AddScoped<IIspitService, IspitService>();
+
+
+builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

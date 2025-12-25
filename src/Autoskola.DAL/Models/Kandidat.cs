@@ -25,6 +25,7 @@ namespace Autoskola.DAL.Models
         public string? Email { get; set; }
         [Required]
         public DateTime DatumUpisa { get; set; }
+        public string? ProfilnaSlika { get; set; }
 
         public ICollection<KandidatCas> KandidatCasovi { get; set; }
         public ICollection<KandidatIspit> KandidatIspiti { get; set; }

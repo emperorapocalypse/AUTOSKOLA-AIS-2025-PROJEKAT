@@ -1,0 +1,112 @@
+﻿@model Autoskola.DAL.Models.Kandidat
+
+@{
+    ViewData["Title"] = "Dodaj Kandidata";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Dodaj Novog Kandidata</h1>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Ime" class="form-label">Ime *</label>
+                        <input asp-for="Ime" class="form-control" placeholder="Unesite ime" />
+                        <span asp-validation-for="Ime" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Prezime" class="form-label">Prezime *</label>
+                        <input asp-for="Prezime" class="form-control" placeholder="Unesite prezime" />
+                        <span asp-validation-for="Prezime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="JMBG" class="form-label">JMBG *</label>
+                    <input asp-for="JMBG" class="form-control" placeholder="Unesite JMBG (13 cifara)" maxlength="13" />
+                    <span asp-validation-for="JMBG" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Telefon" class="form-label">Telefon *</label>
+                        <input asp-for="Telefon" class="form-control" placeholder="Unesite telefon" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Email" class="form-label">Email *</label>
+                        <input asp-for="Email" class="form-control" type="email" placeholder="Unesite email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DatumUpisa" class="form-label">Datum Upisa *</label>
+                    <input asp-for="DatumUpisa" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="DatumUpisa" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="profilnaSlika" class="form-label">Profilna Slika</label>
+                    <input type="file" name="profilnaSlika" id="profilnaSlika" class="form-control" accept="image/*" onchange="previewImage(event)" />
+                    <small class="text-muted">Dozvoljeni formati: JPG, PNG, GIF. Maksimalna veličina: 5MB</small>
+                </div>
+
+                <div class="mb-3">
+                    <img id="imagePreview" src="#" alt="Pregled slike" style="max-width: 200px; max-height: 200px; display: none;" class="img-thumbnail" />
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success">
+                        Sačuvaj
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Nazad
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-info">
+                <h5>Napomena:</h5>
+                <ul>
+                    <li>Sva polja označena sa * su obavezna</li>
+                    <li>JMBG mora imati tačno 13 cifara</li>
+                    <li>Profilna slika je opciona</li>
+                    <li>Slika mora biti JPG, PNG ili GIF</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}

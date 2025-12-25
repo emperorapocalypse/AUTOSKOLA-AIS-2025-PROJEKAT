@@ -3,18 +3,93 @@
   "WorkspaceRootPath": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\controllers\\kandidatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:controllers\\kandidatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\kandidat\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\kandidat\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\kandidat\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\kandidat\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\models\\kandidat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\services\\kandidatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\services\\fileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:services\\fileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\services\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:services\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\kandidat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\kandidat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\kandidat\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\kandidat\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\migrations\\20251225152900_dodajprofilnuslikukandidatu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\views\\kandidat\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:views\\kandidat\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\interfaces\\ikandidatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\interfaces\\iispitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\services\\ispitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\services\\casservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\services\\voziloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\interfaces\\icasservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\interfaces\\ivoziloservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\services\\instruktorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{694BF3E2-4A3C-4A0F-B12D-384114085E7D}|..\\Autoskola.BLL\\Autoskola.BLL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.bll\\interfaces\\iinstruktorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\data\\autoskoladbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\webapplication1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{9AA48935-4833-4020-97FF-352CA8893EA8}|Autoskola.MVC.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\data\\autoskoladbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\models\\cas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\models\\cas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{44EA6670-8FA4-447C-8625-8C81E48C5C3E}|..\\Autoskola.DAL\\Autoskola.DAL.csproj|c:\\users\\abilb\\desktop\\ais projekat autoskola\\autoskola asp.net\\autoskola-ais-2025-projekat\\src\\autoskola.dal\\migrations\\20251225142027_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,7 +99,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -36,7 +111,291 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FileUploadService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Services\\FileUploadService.cs",
+              "RelativeDocumentMoniker": "Services\\FileUploadService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Services\\FileUploadService.cs",
+              "RelativeToolTip": "Services\\FileUploadService.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwEYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T15:56:14.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IFileUploadService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Services\\IFileUploadService.cs",
+              "RelativeDocumentMoniker": "Services\\IFileUploadService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Services\\IFileUploadService.cs",
+              "RelativeToolTip": "Services\\IFileUploadService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T15:55:50.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Kandidat\\edit.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\edit.cshtml",
+              "RelativeToolTip": "Views\\Kandidat\\edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:42:39.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "create.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Kandidat\\create.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\create.cshtml",
+              "RelativeToolTip": "Views\\Kandidat\\create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:42:24.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Kandidat\\Index.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\Index.cshtml",
+              "RelativeToolTip": "Views\\Kandidat\\Index.cshtml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwEsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:41:56.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KandidatController.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Controllers\\KandidatController.cs",
+              "RelativeDocumentMoniker": "Controllers\\KandidatController.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Controllers\\KandidatController.cs",
+              "RelativeToolTip": "Controllers\\KandidatController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAADwv2YAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:34:25.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:03:56.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "details.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Kandidat\\details.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\details.cshtml",
+              "RelativeToolTip": "Views\\Kandidat\\details.cshtml",
+              "ViewState": "AgIAAD0AAAAAAAAAAADwv1QAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:43:10.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Kandidat.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Models\\Kandidat.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.DAL\\Models\\Kandidat.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Models\\Kandidat.cs",
+              "RelativeToolTip": "..\\Autoskola.DAL\\Models\\Kandidat.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAIA7wBoAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T15:26:27.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "KandidatService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\KandidatService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Services\\KandidatService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\KandidatService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Services\\KandidatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:24:41.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20251225152900_DodajProfilnuSlikuKandidatu.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Migrations\\20251225152900_DodajProfilnuSlikuKandidatu.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.DAL\\Migrations\\20251225152900_DodajProfilnuSlikuKandidatu.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Migrations\\20251225152900_DodajProfilnuSlikuKandidatu.cs",
+              "RelativeToolTip": "..\\Autoskola.DAL\\Migrations\\20251225152900_DodajProfilnuSlikuKandidatu.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T15:29:00.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IspitService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\IspitService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Services\\IspitService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\IspitService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Services\\IspitService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:33:13.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\Kandidat\\delete.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Kandidat\\delete.cshtml",
+              "RelativeToolTip": "Views\\Kandidat\\delete.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAiwDIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:42:54.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CasService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\CasService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Services\\CasService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\CasService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Services\\CasService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAmwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:32:55.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VoziloService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\VoziloService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Services\\VoziloService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\VoziloService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Services\\VoziloService.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAmwDUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:32:41.724Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IIspitService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IIspitService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Interfaces\\IIspitService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IIspitService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Interfaces\\IIspitService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:32:24.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-25T14:43:25.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ICasService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\ICasService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Interfaces\\ICasService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\ICasService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Interfaces\\ICasService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:32:08.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IVoziloService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IVoziloService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Interfaces\\IVoziloService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IVoziloService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Interfaces\\IVoziloService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:31:49.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "InstruktorService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\InstruktorService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Services\\InstruktorService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Services\\InstruktorService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Services\\InstruktorService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAwwBcAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:29:59.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IInstruktorService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IInstruktorService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Interfaces\\IInstruktorService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IInstruktorService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Interfaces\\IInstruktorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:29:43.805Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IKandidatService.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IKandidatService.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.BLL\\Interfaces\\IKandidatService.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.BLL\\Interfaces\\IKandidatService.cs",
+              "RelativeToolTip": "..\\Autoskola.BLL\\Interfaces\\IKandidatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:23:57.847Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "20251225142027_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Migrations\\20251225142027_InitialCreate.cs",
+              "RelativeDocumentMoniker": "..\\Autoskola.DAL\\Migrations\\20251225142027_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Migrations\\20251225142027_InitialCreate.cs",
+              "RelativeToolTip": "..\\Autoskola.DAL\\Migrations\\20251225142027_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T14:20:27.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -44,12 +403,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-25T14:14:34.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T14:14:34.749Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 22,
               "Title": "AutoskolaDbContext.cs",
               "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Data\\AutoskolaDbContext.cs",
               "RelativeDocumentMoniker": "..\\Autoskola.DAL\\Data\\AutoskolaDbContext.cs",
@@ -57,12 +415,11 @@
               "RelativeToolTip": "..\\Autoskola.DAL\\Data\\AutoskolaDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T14:14:27.397Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T14:14:27.397Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 24,
               "Title": "Cas.cs",
               "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\Autoskola.DAL\\Models\\Cas.cs",
               "RelativeDocumentMoniker": "..\\Autoskola.DAL\\Models\\Cas.cs",
@@ -70,21 +427,7 @@
               "RelativeToolTip": "..\\Autoskola.DAL\\Models\\Cas.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAnwBoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T14:14:04.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\abilb\\Desktop\\AIS PROJEKAT AUTOSKOLA\\Autoskola ASP.NET\\AUTOSKOLA-AIS-2025-PROJEKAT\\src\\WebApplication1\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T14:03:56.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T14:14:04.142Z"
             }
           ]
         }

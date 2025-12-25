@@ -1,0 +1,89 @@
+﻿@model Autoskola.DAL.Models.Kandidat
+
+@{
+    ViewData["Title"] = "Detalji Kandidata";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Detalji Kandidata</h1>
+    <hr />
+
+    <div class="row mb-4">
+        <div class="col-md-3 text-center">
+            @if (!string.IsNullOrEmpty(Model.ProfilnaSlika))
+            {
+                <img src="@Model.ProfilnaSlika" alt="@Model.Ime @Model.Prezime" class="img-fluid img-thumbnail" style="max-width: 250px; border-radius: 8px;" />
+            }
+            else
+            {
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 250px; height: 250px; margin: 0 auto; font-size: 72px; border-radius: 8px;">
+                    @(Model.Ime.Substring(0, 1))@(Model.Prezime.Substring(0, 1))
+                </div>
+            }
+            <div class="mt-3">
+                <h5>@Model.Ime @Model.Prezime</h5>
+                <p class="text-muted mb-0">ID: @Model.Id</p>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Osnovne Informacije</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-3">Ime</dt>
+                        <dd class="col-sm-9">@Model.Ime</dd>
+
+                        <dt class="col-sm-3">Prezime</dt>
+                        <dd class="col-sm-9">@Model.Prezime</dd>
+
+                        <dt class="col-sm-3">JMBG</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-secondary">@Model.JMBG</span>
+                        </dd>
+
+                        <dt class="col-sm-3">Telefon</dt>
+                        <dd class="col-sm-9">
+                            <a href="tel:@Model.Telefon">@Model.Telefon</a>
+                        </dd>
+
+                        <dt class="col-sm-3">Email</dt>
+                        <dd class="col-sm-9">
+                            <a href="mailto:@Model.Email">@Model.Email</a>
+                        </dd>
+
+                        <dt class="col-sm-3">Datum Upisa</dt>
+                        <dd class="col-sm-9">
+                            @Model.DatumUpisa.ToLongDateString()
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">Status</h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0">
+                        Kandidat je upisan pre <strong>@((DateTime.Now - Model.DatumUpisa).Days)</strong> dana.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+            Izmeni
+        </a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+            Obriši
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            Nazad na Listu
+        </a>
+    </div>
+</div>
