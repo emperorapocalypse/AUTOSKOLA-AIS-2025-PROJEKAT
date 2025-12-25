@@ -1,0 +1,301 @@
+﻿@model Autoskola.DAL.Models.Cas
+@using Autoskola.DAL.Models
+
+@{
+    ViewData["Title"] = "Detalji Časa";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Detalji Časa #@Model.BrojCasa</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Osnovne Informacije</h5>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Broj Časa</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-primary fs-6">Čas #@Model.BrojCasa</span>
+                        </dd>
+
+                        <dt class="col-sm-4">Tip Časa</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.TipCasa == TipCasa.Teorijski)
+                            {
+                                <span class="badge bg-info">
+                                    <i class="bi bi-book"></i> Teorijski
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    <i class="bi bi-car-front"></i> Praktičan
+                                </span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">Datum</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.Datum.HasValue)
+                            {
+                                <strong>@Model.Datum.Value.ToString("dd.MM.yyyy")</strong>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Nije zakazan</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="bi bi-person-badge"></i> Instruktor</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Instruktor != null)
+                    {
+                        <div class="d-flex align-items-center">
+                            @if (!string.IsNullOrEmpty(Model.Instruktor.ProfilnaSlika))
+                            {
+                                <img src="@Model.Instruktor.ProfilnaSlika" alt="@Model.Instruktor.Ime @Model.Instruktor.Prezime" class="rounded me-3" style="width: 80px; height: 80px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded me-3" style="width: 80px; height: 80px;">
+                                    <span style="font-size: 30px;">@(Model.Instruktor.Ime.Substring(0, 1))@(Model.Instruktor.Prezime.Substring(0, 1))</span>
+                                </div>
+                            }
+                            <div>
+                                <h5 class="mb-1">@Model.Instruktor.Ime @Model.Instruktor.Prezime</h5>
+                                <p class="mb-0">
+                                    <small class="text-muted">
+                                        <i class="bi bi-telephone"></i> @Model.Instruktor.Telefon<br />
+                                        <i class="bi bi-envelope"></i> @Model.Instruktor.Email
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0">Nije dodeljen instruktor za ovaj čas.</p>
+                    }
+                </div>
+            </div>
+
+            @if (Model.TipCasa == TipCasa.Praktican && Model.Vozilo != null)
+{
+    <div class="card mb-3">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0"><i class="bi bi-car-front"></i> Vozilo</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (Model.Vozilo.Slike != null && Model.Vozilo.Slike.Any())
+                    {
+                        <img src="@Model.Vozilo.Slike.First().PutanjaDoSlike" alt="@Model.Vozilo.Marka @Model.Vozilo.Model" class="img-thumbnail" style="width: 100%; height: 150px; object-fit: cover;" />
+                        @if (Model.Vozilo.Slike.Count > 1)
+                        {
+                            <div class="mt-2">
+                                <small class="text-muted">+@(Model.Vozilo.Slike.Count - 1) još slika</small>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="width: 100%; height: 150px;">
+                            <i class="bi bi-car-front" style="font-size: 50px;"></i>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <h5>@Model.Vozilo.Marka @Model.Vozilo.Model</h5>
+                    <dl class="row mb-0">
+                        <dt class="col-sm-5">Registracija</dt>
+                        <dd class="col-sm-7"><span class="badge bg-primary">@Model.Vozilo.Registracija</span></dd>
+
+                        <dt class="col-sm-5">Godina</dt>
+                        <dd class="col-sm-7">
+                            @if (Model.Vozilo.GodinaProizvodnje.HasValue)
+                            {
+                                @Model.Vozilo.GodinaProizvodnje
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-5">Tip Goriva</dt>
+                        <dd class="col-sm-7">
+                            @switch (Model.Vozilo.TipGoriva)
+                            {
+                                case TipGoriva.Benzin:
+                                    <span class="badge bg-warning text-dark">Benzin</span>
+                                    break;
+                                case TipGoriva.Dizel:
+                                    <span class="badge bg-dark">Dizel</span>
+                                    break;
+                                case TipGoriva.EV:
+                                    <span class="badge bg-success">Električno</span>
+                                    break;
+                            }
+                        </dd>
+
+                        <dt class="col-sm-5">Stanje</dt>
+                        <dd class="col-sm-7">
+                            @if (Model.Vozilo.VoznoStanje == VoznoStanje.Vozno)
+                            {
+                                <span class="badge bg-success">Vozno</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Nevozno</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            
+            @if (Model.Vozilo.Slike != null && Model.Vozilo.Slike.Count > 1)
+            {
+                <hr />
+                <h6 class="mb-2">Sve Slike Vozila</h6>
+                <div class="row">
+                    @foreach (var slika in Model.Vozilo.Slike)
+                    {
+                        <div class="col-md-3 col-6 mb-2">
+                            <a href="@slika.PutanjaDoSlike" target="_blank">
+                                <img src="@slika.PutanjaDoSlike" class="img-thumbnail" style="width: 100%; height: 80px; object-fit: cover;" alt="@slika.Opis" />
+                            </a>
+                            @if (!string.IsNullOrEmpty(slika.Opis))
+                            {
+                                <small class="text-muted d-block text-center">@slika.Opis</small>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+}
+
+            <div class="card mb-3">
+                <div class="card-header bg-warning">
+                    <h5 class="mb-0"><i class="bi bi-people"></i> Kandidati na Času (@(Model.KandidatCasovi?.Count ?? 0))</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.KandidatCasovi != null && Model.KandidatCasovi.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Slika</th>
+                                        <th>Ime i Prezime</th>
+                                        <th>JMBG</th>
+                                        <th>Prisustvo</th>
+                                        <th>Napomena</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kandidatCas in Model.KandidatCasovi)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(kandidatCas.Kandidat.ProfilnaSlika))
+                                                {
+                                                    <img src="@kandidatCas.Kandidat.ProfilnaSlika" class="rounded" style="width: 40px; height: 40px; object-fit: cover;" />
+                                                }
+                                                else
+                                                {
+                                                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded" style="width: 40px; height: 40px; font-size: 14px;">
+                                                        @(kandidatCas.Kandidat.Ime.Substring(0, 1))@(kandidatCas.Kandidat.Prezime.Substring(0, 1))
+                                                    </div>
+                                                }
+                                            </td>
+                                            <td class="align-middle">
+                                                <strong>@kandidatCas.Kandidat.Ime @kandidatCas.Kandidat.Prezime</strong>
+                                            </td>
+                                            <td class="align-middle">@kandidatCas.Kandidat.JMBG</td>
+                                            <td class="align-middle">
+                                                @if (kandidatCas.Prisustvovao)
+                                                {
+                                                    <span class="badge bg-success"><i class="bi bi-check-circle"></i> Prisutan</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger"><i class="bi bi-x-circle"></i> Odsutan</span>
+                                                }
+                                            </td>
+                                            <td class="align-middle">
+                                                @if (!string.IsNullOrEmpty(kandidatCas.Napomena))
+                                                {
+                                                    <small>@kandidatCas.Napomena</small>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">-</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-0">Nema kandidata prijavlјenih za ovaj čas.</p>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">Akcije</h6>
+                </div>
+                <div class="card-body">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning w-100 mb-2">
+                        <i class="bi bi-pencil"></i> Izmeni Čas
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger w-100 mb-2">
+                        <i class="bi bi-trash"></i> Obriši Čas
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary w-100">
+                        <i class="bi bi-arrow-left"></i> Nazad na Listu
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h6 class="mb-0">Statistika</h6>
+                </div>
+                <div class="card-body">
+                    <dl class="mb-0">
+                        <dt>Ukupno kandidata:</dt>
+                        <dd><strong>@(Model.KandidatCasovi?.Count ?? 0)</strong></dd>
+
+                        <dt>Prisutnih:</dt>
+                        <dd><strong>@(Model.KandidatCasovi?.Count(kc => kc.Prisustvovao) ?? 0)</strong></dd>
+
+                        <dt>Odsutnih:</dt>
+                        <dd><strong>@(Model.KandidatCasovi?.Count(kc => !kc.Prisustvovao) ?? 0)</strong></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

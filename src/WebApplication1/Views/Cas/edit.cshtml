@@ -1,0 +1,343 @@
+﻿@model Autoskola.DAL.Models.Cas
+@using Autoskola.DAL.Models
+
+@{
+    ViewData["Title"] = "Izmeni Čas";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Izmeni Čas #@Model.BrojCasa</h1>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BrojCasa" class="form-label">Broj Časa *</label>
+                        <input asp-for="BrojCasa" class="form-control" type="number" min="1" />
+                        <span asp-validation-for="BrojCasa" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TipCasa" class="form-label">Tip Časa *</label>
+                        <select asp-for="TipCasa" class="form-control" asp-items="Html.GetEnumSelectList<TipCasa>()" id="tipCasaSelect">
+                            <option value="">-- Izaberi Tip Časa --</option>
+                        </select>
+                        <span asp-validation-for="TipCasa" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Datum" class="form-label">Datum</label>
+                    <input asp-for="Datum" class="form-control" type="date" />
+                    <span asp-validation-for="Datum" class="text-danger"></span>
+                    <small class="form-text text-muted">Opciono - možete ostaviti prazno ako čas još nije zakazan</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="InstruktorId" class="form-label">Instruktor</label>
+                        <select asp-for="InstruktorId" class="form-control" id="instruktorSelect">
+                            <option value="">-- Izaberi Instruktora --</option>
+                            @if (ViewBag.InstruktoriLista != null)
+                            {
+                                @foreach (var instruktor in (IEnumerable<Instruktor>)ViewBag.InstruktoriLista)
+                                {
+                                    <option value="@instruktor.Id" 
+                                            data-slika="@instruktor.ProfilnaSlika" 
+                                            data-ime="@instruktor.Ime @instruktor.Prezime"
+                                            selected="@(instruktor.Id == Model.InstruktorId)">
+                                        @instruktor.Ime @instruktor.Prezime
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="InstruktorId" class="text-danger"></span>
+                        
+                        
+                        <div id="instruktorPreview" class="mt-2" style="display: none;">
+                            <div class="card">
+                                <div class="card-body p-2">
+                                    <div class="d-flex align-items-center">
+                                        <img id="instruktorSlika" src="" class="rounded me-2" style="width: 50px; height: 50px; object-fit: cover;" />
+                                        <div id="instruktorIme" class="fw-bold"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3" id="voziloContainer">
+                        <label asp-for="VoziloId" class="form-label">Vozilo</label>
+                        <select asp-for="VoziloId" class="form-control" id="voziloSelect">
+                            <option value="">-- Izaberi Vozilo --</option>
+                            @if (ViewBag.VozilaLista != null)
+                            {
+                                @foreach (var vozilo in (IEnumerable<Vozilo>)ViewBag.VozilaLista)
+                                {
+                                    var prvaSlika = vozilo.Slike?.FirstOrDefault()?.PutanjaDoSlike ?? "";
+                                    <option value="@vozilo.Id" 
+                                            data-slika="@prvaSlika" 
+                                            data-marka="@vozilo.Marka @vozilo.Model"
+                                            selected="@(vozilo.Id == Model.VoziloId)">
+                                        @vozilo.Marka @vozilo.Model (@vozilo.Registracija)
+                                    </option>
+                                }
+                            }
+                        </select>
+                        <span asp-validation-for="VoziloId" class="text-danger"></span>
+                        <small class="form-text text-muted">Prikazana su samo vozna vozila</small>
+                        
+                        
+                        <div id="voziloPreview" class="mt-2" style="display: none;">
+                            <div class="card">
+                                <div class="card-body p-2">
+                                    <div class="d-flex align-items-center">
+                                        <img id="voziloSlika" src="" class="rounded me-2" style="width: 50px; height: 50px; object-fit: cover;" />
+                                        <div id="voziloMarka" class="fw-bold"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <hr />
+
+<h5 class="mb-3">Kandidati na Času</h5>
+<div class="mb-3">
+    <div class="card">
+        <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+            @if (ViewBag.Kandidati != null && ((IEnumerable<Kandidat>)ViewBag.Kandidati).Any())
+            {
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">Prisutan</th>
+                            <th>Kandidat</th>
+                            <th style="width: 40%;">Napomena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var selectedKandidati = ViewBag.SelectedKandidati as List<int> ?? new List<int>();
+                            var kandidatCasovi = Model.KandidatCasovi?.ToDictionary(kc => kc.KandidatId) ?? new Dictionary<int, KandidatCas>();
+                        }
+                        @foreach (var kandidat in (IEnumerable<Kandidat>)ViewBag.Kandidati)
+                        {
+                            var isSelected = selectedKandidati.Contains(kandidat.Id);
+                            var kandidatCas = kandidatCasovi.ContainsKey(kandidat.Id) ? kandidatCasovi[kandidat.Id] : null;
+                            
+                            <tr class="kandidat-row" data-kandidat-id="@kandidat.Id">
+                                <td class="text-center align-middle">
+                                    <input class="form-check-input kandidat-checkbox" 
+                                           type="checkbox" 
+                                           name="selectedKandidati" 
+                                           value="@kandidat.Id" 
+                                           @(isSelected ? "checked" : "")
+                                           onchange="toggleKandidatRow(this)" />
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex align-items-center">
+                                        @if (!string.IsNullOrEmpty(kandidat.ProfilnaSlika))
+                                        {
+                                            <img src="@kandidat.ProfilnaSlika" class="rounded me-2" style="width: 30px; height: 30px; object-fit: cover;" />
+                                        }
+                                        else
+                                        {
+                                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded me-2" style="width: 30px; height: 30px; font-size: 12px;">
+                                                @(kandidat.Ime.Substring(0, 1))@(kandidat.Prezime.Substring(0, 1))
+                                            </div>
+                                        }
+                                        <span>
+                                            @kandidat.Ime @kandidat.Prezime
+                                            @if (!string.IsNullOrEmpty(kandidat.JMBG))
+                                            {
+                                                <small class="text-muted">(@kandidat.JMBG)</small>
+                                            }
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="align-middle kandidat-details" style="@(isSelected ? "" : "display: none;")">
+                                    <div class="input-group input-group-sm">
+                                        <span class="input-group-text">
+                                            <input class="form-check-input mt-0" 
+                                                   type="checkbox" 
+                                                   name="prisustva_@kandidat.Id" 
+                                                   @(kandidatCas?.Prisustvovao == true ? "checked" : "")
+                                                   title="Prisustvo" />
+                                        </span>
+                                        <input type="text" 
+                                               class="form-control form-control-sm" 
+                                               name="napomene_@kandidat.Id" 
+                                               value="@(kandidatCas?.Napomena ?? "")" 
+                                               placeholder="Napomena o kandidatu..." />
+                                    </div>
+                                    <small class="text-muted">Čekiraj ako je pristustvovao</small>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted mb-0">Nema dostupnih kandidata u bazi.</p>
+            }
+        </div>
+    </div>
+    <small class="form-text text-muted">
+        <i class="bi bi-info-circle"></i> Izaberite kandidate, označite prisustvo i dodajte napomene po potrebi
+    </small>
+</div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Sačuvaj Izmene
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Nazad
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-warning">
+                <h5><i class="bi bi-exclamation-triangle"></i> Izmena Časa</h5>
+                <p class="mb-0">
+                    Menjate postojeći čas. Pažljivo proverite sve podatke pre čuvanja.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">Trenutni Podaci</h6>
+                </div>
+                <div class="card-body">
+                    <small>
+                        <strong>Broj časa:</strong> @Model.BrojCasa<br />
+                        <strong>Tip:</strong> @(Model.TipCasa == TipCasa.Teorijski ? "Teorijski" : "Praktičan")<br />
+                        <strong>Datum:</strong> @(Model.Datum.HasValue ? Model.Datum.Value.ToString("dd.MM.yyyy") : "Nije zakazan")<br />
+                        <strong>Instruktor:</strong> @(Model.Instruktor != null ? $"{Model.Instruktor.Ime} {Model.Instruktor.Prezime}" : "-")<br />
+                        <strong>Vozilo:</strong> @(Model.Vozilo != null ? $"{Model.Vozilo.Marka} {Model.Vozilo.Model}" : "-")<br />
+                        <strong>Kandidata:</strong> @(Model.KandidatCasovi?.Count ?? 0)
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        
+        function toggleKandidatRow(checkbox) {
+            const row = checkbox.closest('.kandidat-row');
+            const details = row.querySelector('.kandidat-details');
+            
+            if (checkbox.checked) {
+                details.style.display = '';
+            } else {
+                details.style.display = 'none';
+                
+                const prisustvoCheckbox = details.querySelector('input[type="checkbox"]');
+                const napomenaInput = details.querySelector('input[type="text"]');
+                if (prisustvoCheckbox) prisustvoCheckbox.checked = false;
+                if (napomenaInput) napomenaInput.value = '';
+            }
+        }
+
+        
+        document.getElementById('tipCasaSelect').addEventListener('change', function() {
+            const voziloContainer = document.getElementById('voziloContainer');
+            const selectedValue = this.value;
+            
+            if (selectedValue === '0') { 
+                voziloContainer.style.display = 'none';
+                document.getElementById('voziloSelect').value = '';
+                document.getElementById('voziloPreview').style.display = 'none';
+            } else if (selectedValue === '1') { 
+                voziloContainer.style.display = 'block';
+            } else {
+                voziloContainer.style.display = 'block';
+            }
+        });
+
+        
+        document.getElementById('instruktorSelect').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const slika = selectedOption.getAttribute('data-slika');
+            const ime = selectedOption.getAttribute('data-ime');
+            const preview = document.getElementById('instruktorPreview');
+            
+            if (this.value && ime) {
+                if (slika && slika !== '') {
+                    document.getElementById('instruktorSlika').src = slika;
+                } else {
+                    const inicijali = ime.split(' ').map(n => n[0]).join('');
+                    document.getElementById('instruktorSlika').src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="50" height="50" fill="%23666"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="20">' + inicijali + '</text></svg>';
+                }
+                document.getElementById('instruktorIme').textContent = ime;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+      
+        document.getElementById('voziloSelect').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const slika = selectedOption.getAttribute('data-slika');
+            const marka = selectedOption.getAttribute('data-marka');
+            const preview = document.getElementById('voziloPreview');
+            
+            if (this.value && marka) {
+                if (slika && slika !== '') {
+                    document.getElementById('voziloSlika').src = slika;
+                } else {
+                    document.getElementById('voziloSlika').src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="50" height="50" fill="%23999"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="30">🚗</text></svg>';
+                }
+                document.getElementById('voziloMarka').textContent = marka;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const tipCasa = document.getElementById('tipCasaSelect').value;
+            if (tipCasa === '0') {
+                document.getElementById('voziloContainer').style.display = 'none';
+            }
+            
+           
+            const instruktorSelect = document.getElementById('instruktorSelect');
+            if (instruktorSelect.value) {
+                instruktorSelect.dispatchEvent(new Event('change'));
+            }
+            
+            const voziloSelect = document.getElementById('voziloSelect');
+            if (voziloSelect.value) {
+                voziloSelect.dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+}
+}

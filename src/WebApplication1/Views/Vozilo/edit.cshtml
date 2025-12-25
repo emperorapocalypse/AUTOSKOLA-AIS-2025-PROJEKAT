@@ -1,0 +1,218 @@
+﻿@model Autoskola.DAL.Models.Vozilo
+@using Autoskola.DAL.Models
+
+@{
+    ViewData["Title"] = "Izmeni Vozilo";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Izmeni Vozilo</h1>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                <input type="hidden" asp-for="Id" />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Marka" class="form-label">Marka *</label>
+                        <input asp-for="Marka" class="form-control" />
+                        <span asp-validation-for="Marka" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Model" class="form-label">Model *</label>
+                        <input asp-for="Model" class="form-control" />
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Registracija" class="form-label">Registracija *</label>
+                        <input asp-for="Registracija" class="form-control" maxlength="10" />
+                        <span asp-validation-for="Registracija" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="GodinaProizvodnje" class="form-label">Godina Proizvodnje</label>
+                        <input asp-for="GodinaProizvodnje" class="form-control" type="number" min="1900" max="@DateTime.Now.Year" />
+                        <span asp-validation-for="GodinaProizvodnje" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TipGoriva" class="form-label">Tip Goriva *</label>
+                        <select asp-for="TipGoriva" class="form-control" asp-items="Html.GetEnumSelectList<TipGoriva>()">
+                            <option value="">-- Izaberi Tip Goriva --</option>
+                        </select>
+                        <span asp-validation-for="TipGoriva" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="VoznoStanje" class="form-label">Vozno Stanje *</label>
+                        <select asp-for="VoznoStanje" class="form-control" asp-items="Html.GetEnumSelectList<VoznoStanje>()">
+                            <option value="">-- Izaberi Stanje --</option>
+                        </select>
+                        <span asp-validation-for="VoznoStanje" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+
+                <h5 class="mb-3">Postojeće Slike</h5>
+                @if (Model.Slike != null && Model.Slike.Any())
+                {
+                    <div class="row mb-3">
+                        @foreach (var slika in Model.Slike)
+                        {
+                            <div class="col-md-3 mb-3" id="slika-@slika.Id">
+                                <div class="card">
+                                    <img src="@slika.PutanjaDoSlike" class="card-img-top" style="height: 150px; object-fit: cover;" />
+                                    <div class="card-body p-2">
+                                        @if (!string.IsNullOrEmpty(slika.Opis))
+                                        {
+                                            <p class="card-text small mb-1">@slika.Opis</p>
+                                        }
+                                        <button type="button" class="btn btn-danger btn-sm w-100" onclick="deleteImage(@slika.Id)">
+                                            Obriši
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">Nema slika.</p>
+                }
+
+                <hr />
+
+                <h5 class="mb-3">Dodaj Nove Slike</h5>
+
+                <div id="noveSlikeContainer">
+                    <div class="slika-row mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Slika</label>
+                                <input type="file" name="noveSlike" class="form-control" accept="image/*" onchange="previewImage(this)" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label">Opis (opciono)</label>
+                                <input type="text" name="opisiNovihSlika" class="form-control" placeholder="Npr. Prednja strana" />
+                            </div>
+                            <div class="col-md-1 d-flex align-items-end">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="removeImageRow(this)" style="display: none;">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <img class="preview-img img-thumbnail" style="max-width: 200px; max-height: 200px; display: none;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary btn-sm mb-3" onclick="addImageRow()">
+                    <i class="bi bi-plus-circle"></i> Dodaj Još Slika
+                </button>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success">
+                        Sačuvaj Izmene
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Nazad
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-warning">
+                <h5>Pažnja:</h5>
+                <ul>
+                    <li>Postojeće slike možete obrisati pojedinačno</li>
+                    <li>Nove slike će biti doddate postojećim</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        function addImageRow() {
+            const container = document.getElementById('noveSlikeContainer');
+            const newRow = document.querySelector('.slika-row').cloneNode(true);
+            
+            newRow.querySelector('input[type="file"]').value = '';
+            newRow.querySelector('input[type="text"]').value = '';
+            newRow.querySelector('.preview-img').style.display = 'none';
+            newRow.querySelector('.preview-img').src = '';
+            newRow.querySelector('.btn-danger').style.display = 'block';
+            
+            container.appendChild(newRow);
+        }
+
+        function removeImageRow(button) {
+            button.closest('.slika-row').remove();
+        }
+
+        function previewImage(input) {
+            const preview = input.closest('.slika-row').querySelector('.preview-img');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function deleteImage(slikaId) {
+            if (!confirm('Da li ste sigurni da želite da obrišete ovu sliku?')) {
+                return;
+            }
+
+            fetch('/Vozilo/DeleteImage/' + slikaId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('slika-' + slikaId).remove();
+                    alert('Slika je uspešno obrisana!');
+                } else {
+                    alert('Greška: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Došlo je do greške prilikom brisanja slike.');
+                console.error(error);
+            });
+        }
+    </script>
+}

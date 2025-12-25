@@ -10,29 +10,40 @@ namespace Autoskola.DAL.Models
     public class Vozilo
     {
         [Required]
-        public int Id {  get; set; }
+        public int Id { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Marka { get; set; }
+
         [Required]
         [MaxLength(50)]
         public string Model { get; set; }
+
         [Required]
         [MaxLength(10)]
         public string Registracija { get; set; }
+
         public int? GodinaProizvodnje { get; set; }
+
         [Required]
         public TipGoriva TipGoriva { get; set; }
+
         [Required]
         public VoznoStanje VoznoStanje { get; set; }
 
 
+
+        public string MarkaModel => $"{Marka} {Model}";
+
+        
         public ICollection<Cas> Casovi { get; set; }
         public ICollection<IspitVozilo> IspitVozila { get; set; }
 
-
         
+        public ICollection<VoziloSlika> Slike { get; set; } = new List<VoziloSlika>();
     }
+
     public enum TipGoriva
     {
         Benzin = 0,

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Autoskola.DAL.Models.Vozilo>
+@using Autoskola.DAL.Models
+
+@{
+    ViewData["Title"] = "Lista Vozila";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Lista Vozila</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <strong>Uspeh!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>Greška!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">
+            Dodaj Novo Vozilo
+        </a>
+    </p>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Slike</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Registracija</th>
+                <th>Godina</th>
+                <th>Tip Goriva</th>
+                <th>Stanje</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var vozilo in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (vozilo.Slike != null && vozilo.Slike.Any())
+                            {
+                                <img src="@vozilo.Slike.First().PutanjaDoSlike" alt="@vozilo.Marka" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;" />
+                                @if (vozilo.Slike.Count > 1)
+                                {
+                                    <span class="badge bg-info">+@(vozilo.Slike.Count - 1)</span>
+                                }
+                            }
+                            else
+                            {
+                                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-car-front"></i>
+                                </div>
+                            }
+                        </td>
+                        <td>@vozilo.Marka</td>
+                        <td>@vozilo.Model</td>
+                        <td><span class="badge bg-primary">@vozilo.Registracija</span></td>
+                        <td>@vozilo.GodinaProizvodnje</td>
+                        <td>
+                            @switch (vozilo.TipGoriva)
+                            {
+                                case TipGoriva.Benzin:
+                                    <span class="badge bg-warning">Benzin</span>
+                                    break;
+                                case TipGoriva.Dizel:
+                                    <span class="badge bg-dark">Dizel</span>
+                                    break;
+                                case TipGoriva.EV:
+                                    <span class="badge bg-success">Električno</span>
+                                    break;
+                            }
+                        </td>
+                        <td>
+                            @if (vozilo.VoznoStanje == VoznoStanje.Vozno)
+                            {
+                                <span class="badge bg-success">Vozno</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Nevozno</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@vozilo.Id" class="btn btn-info btn-sm">
+                                Detalji
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@vozilo.Id" class="btn btn-warning btn-sm">
+                                Izmeni
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@vozilo.Id" class="btn btn-danger btn-sm">
+                                Obriši
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="text-center">
+                        <em>Nema vozila u bazi.</em>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

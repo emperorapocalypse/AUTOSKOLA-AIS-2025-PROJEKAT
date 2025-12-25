@@ -20,6 +20,8 @@ namespace Autoskola.DAL.Data
         public DbSet<KandidatIspit> KandidatIspiti { get; set; }
         public DbSet<IspitVozilo> IspitVozila { get; set; }
 
+        public DbSet<VoziloSlika> VoziloSlike { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -85,6 +87,12 @@ namespace Autoskola.DAL.Data
                 .WithMany(ins => ins.Ispiti)
                 .HasForeignKey(i => i.InstruktorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VoziloSlika>()
+                .HasOne(vs => vs.Vozilo)
+                .WithMany(v => v.Slike)
+                .HasForeignKey(vs => vs.VoziloId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

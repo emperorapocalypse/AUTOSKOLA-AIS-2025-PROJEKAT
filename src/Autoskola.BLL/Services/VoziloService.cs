@@ -21,12 +21,16 @@ namespace Autoskola.BLL.Services
 
         public async Task<IEnumerable<Vozilo>> GetAllAsync()
         {
-            return await _context.Vozila.ToListAsync();
+            return await _context.Vozila
+                .Include(v => v.Slike)
+                .ToListAsync();
         }
 
         public async Task<Vozilo?> GetByIdAsync(int id)
         {
-            return await _context.Vozila.FindAsync(id);
+            return await _context.Vozila
+                .Include(v => v.Slike)
+                .FirstOrDefaultAsync(v => v.Id == id);
         }
 
         public async Task AddAsync(Vozilo vozilo)
@@ -43,10 +47,35 @@ namespace Autoskola.BLL.Services
 
         public async Task DeleteAsync(int id)
         {
-            var vozilo = await _context.Vozila.FindAsync(id);
+            var vozilo = await _context.Vozila
+                .Include(v => v.Slike)
+                .FirstOrDefaultAsync(v => v.Id == id);
+
             if (vozilo != null)
             {
                 _context.Vozila.Remove(vozilo);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        // Metode za slike
+        public async Task<VoziloSlika?> GetSlikaByIdAsync(int id)
+        {
+            return await _context.VoziloSlike.FindAsync(id);
+        }
+
+        public async Task AddSlikaAsync(VoziloSlika slika)
+        {
+            _context.VoziloSlike.Add(slika);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteSlikaAsync(int id)
+        {
+            var slika = await _context.VoziloSlike.FindAsync(id);
+            if (slika != null)
+            {
+                _context.VoziloSlike.Remove(slika);
                 await _context.SaveChangesAsync();
             }
         }

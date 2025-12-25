@@ -24,6 +24,9 @@ namespace Autoskola.BLL.Services
             return await _context.Casovi
                 .Include(c => c.Instruktor)
                 .Include(c => c.Vozilo)
+                    .ThenInclude(v => v.Slike)  
+                .Include(c => c.KandidatCasovi)
+                    .ThenInclude(kc => kc.Kandidat)
                 .ToListAsync();
         }
 
@@ -32,18 +35,58 @@ namespace Autoskola.BLL.Services
             return await _context.Casovi
                 .Include(c => c.Instruktor)
                 .Include(c => c.Vozilo)
+                    .ThenInclude(v => v.Slike)  
+                .Include(c => c.KandidatCasovi)
+                    .ThenInclude(kc => kc.Kandidat)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task AddAsync(Cas cas)
+        public async Task AddAsync(Cas cas, List<int> kandidatIds)
         {
             _context.Casovi.Add(cas);
             await _context.SaveChangesAsync();
+
+           
+            if (kandidatIds != null && kandidatIds.Any())
+            {
+                foreach (var kandidatId in kandidatIds)
+                {
+                    _context.KandidatCasovi.Add(new KandidatCas
+                    {
+                        CasId = cas.Id,
+                        KandidatId = kandidatId,
+                        Prisustvovao = false
+                    });
+                }
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task UpdateAsync(Cas cas)
+        public async Task UpdateAsync(Cas cas, List<(int KandidatId, bool Prisustvovao, string? Napomena)> kandidatCasovi)
         {
             _context.Casovi.Update(cas);
+
+            // Ukloni stare veze sa kandidatima
+            var stariKandidati = await _context.KandidatCasovi
+                .Where(kc => kc.CasId == cas.Id)
+                .ToListAsync();
+            _context.KandidatCasovi.RemoveRange(stariKandidati);
+
+            // Dodaj nove veze sa prisustvom i napomenama
+            if (kandidatCasovi != null && kandidatCasovi.Any())
+            {
+                foreach (var (kandidatId, prisustvovao, napomena) in kandidatCasovi)
+                {
+                    _context.KandidatCasovi.Add(new KandidatCas
+                    {
+                        CasId = cas.Id,
+                        KandidatId = kandidatId,
+                        Prisustvovao = prisustvovao,
+                        Napomena = napomena
+                    });
+                }
+            }
+
             await _context.SaveChangesAsync();
         }
 
@@ -55,6 +98,23 @@ namespace Autoskola.BLL.Services
                 _context.Casovi.Remove(cas);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Instruktor>> GetAllInstruktoriAsync()
+        {
+            return await _context.Instruktori.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Kandidat>> GetAllKandidatiAsync()
+        {
+            return await _context.Kandidati.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Vozilo>> GetAllVozilaAsync()
+        {
+            return await _context.Vozila
+                .Where(v => v.VoznoStanje == VoznoStanje.Vozno)
+                .ToListAsync();
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Autoskola.DAL.Models;
 
 namespace Autoskola.BLL.Interfaces
@@ -12,8 +7,11 @@ namespace Autoskola.BLL.Interfaces
     {
         Task<IEnumerable<Ispit>> GetAllAsync();
         Task<Ispit?> GetByIdAsync(int id);
-        Task AddAsync(Ispit ispit);
-        Task UpdateAsync(Ispit ispit);
+        Task AddAsync(Ispit ispit, int kandidatId, List<int>? vozilaIds);
+        Task UpdateAsync(Ispit ispit, int kandidatId, List<int>? vozilaIds);
         Task DeleteAsync(int id);
+        Task<IEnumerable<Instruktor>> GetAllInstruktoriAsync();
+        Task<IEnumerable<Kandidat>> GetAllKandidatiAsync();
+        Task<IEnumerable<Vozilo>> GetAllVozilaAsync();
     }
 }

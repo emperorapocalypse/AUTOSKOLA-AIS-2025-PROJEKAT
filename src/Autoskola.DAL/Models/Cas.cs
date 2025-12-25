@@ -11,11 +11,14 @@ namespace Autoskola.DAL.Models
     {
         [Required]
         public int Id { get; set; }
+
         [Required]
         public TipCasa TipCasa { get; set; }
+
         [Required]
-        [MaxLength(10)]
-        public int BrojCasa { get; set; }
+        [Range(1, 999, ErrorMessage = "Broj časa mora biti između 1 i 999")]
+        public int BrojCasa { get; set; }  // Obriši [MaxLength(10)] - to je za stringove!
+
         public DateOnly? Datum { get; set; }
 
         public int? InstruktorId { get; set; }
@@ -25,8 +28,6 @@ namespace Autoskola.DAL.Models
         public Vozilo? Vozilo { get; set; }
 
         public ICollection<KandidatCas> KandidatCasovi { get; set; }
-
-
     }
 
     public enum TipCasa

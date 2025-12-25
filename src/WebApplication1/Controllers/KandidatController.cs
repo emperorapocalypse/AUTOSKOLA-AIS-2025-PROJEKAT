@@ -18,14 +18,14 @@ namespace Autoskola.MVC.Controllers
             _fileUploadService = fileUploadService;
         }
 
-        
+        // GET: Kandidat/Index
         public async Task<IActionResult> Index()
         {
             var kandidati = await _kandidatService.GetAllAsync();
             return View(kandidati);
         }
 
-        
+        // GET: Kandidat/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var kandidat = await _kandidatService.GetByIdAsync(id);
@@ -35,13 +35,13 @@ namespace Autoskola.MVC.Controllers
             return View(kandidat);
         }
 
-        
+        // GET: Kandidat/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        
+        // POST: Kandidat/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Kandidat kandidat, IFormFile profilnaSlika)
@@ -50,7 +50,7 @@ namespace Autoskola.MVC.Controllers
             {
                 ModelState.Clear();
 
-                
+                // Upload slike ako je poslata
                 if (profilnaSlika != null && profilnaSlika.Length > 0)
                 {
                     kandidat.ProfilnaSlika = await _fileUploadService.UploadImageAsync(profilnaSlika, "kandidati");
@@ -81,14 +81,11 @@ namespace Autoskola.MVC.Controllers
             return View(kandidat);
         }
 
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Kandidat kandidat, IFormFile profilnaSlika)
         {
-
-            System.Diagnostics.Debug.WriteLine("Edit metoda pozvana");
-
             if (id != kandidat.Id)
             {
                 TempData["ErrorMessage"] = "Neispravni podaci.";
@@ -97,41 +94,21 @@ namespace Autoskola.MVC.Controllers
 
             try
             {
-                
-                var existingKandidat = await _kandidatService.GetByIdAsync(id);
-
-                if (existingKandidat == null)
-                {
-                    TempData["ErrorMessage"] = "Kandidat nije pronađen.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-               
-                string slikaPath = existingKandidat.ProfilnaSlika;
-
-              
+            
                 if (profilnaSlika != null && profilnaSlika.Length > 0)
                 {
                     
-                    if (!string.IsNullOrEmpty(existingKandidat.ProfilnaSlika))
+                    if (!string.IsNullOrEmpty(kandidat.ProfilnaSlika))
                     {
-                        await _fileUploadService.DeleteImageAsync(existingKandidat.ProfilnaSlika);
+                        await _fileUploadService.DeleteImageAsync(kandidat.ProfilnaSlika);
                     }
 
                    
-                    slikaPath = await _fileUploadService.UploadImageAsync(profilnaSlika, "kandidati");
+                    kandidat.ProfilnaSlika = await _fileUploadService.UploadImageAsync(profilnaSlika, "kandidati");
                 }
+               
 
-                
-                existingKandidat.Ime = kandidat.Ime;
-                existingKandidat.Prezime = kandidat.Prezime;
-                existingKandidat.JMBG = kandidat.JMBG;
-                existingKandidat.Telefon = kandidat.Telefon;
-                existingKandidat.Email = kandidat.Email;
-                existingKandidat.DatumUpisa = kandidat.DatumUpisa;
-                existingKandidat.ProfilnaSlika = slikaPath;
-
-                await _kandidatService.UpdateAsync(existingKandidat);
+                await _kandidatService.UpdateAsync(kandidat);
 
                 TempData["SuccessMessage"] = $"Kandidat {kandidat.Ime} {kandidat.Prezime} je uspešno izmenjen!";
                 return RedirectToAction(nameof(Index));
@@ -139,11 +116,11 @@ namespace Autoskola.MVC.Controllers
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"Greška prilikom izmene: {ex.Message}";
-                return RedirectToAction(nameof(Index));
+                return View(kandidat);
             }
         }
 
-
+        
         public async Task<IActionResult> Delete(int id)
         {
             var kandidat = await _kandidatService.GetByIdAsync(id);
@@ -162,7 +139,7 @@ namespace Autoskola.MVC.Controllers
             {
                 var kandidat = await _kandidatService.GetByIdAsync(id);
 
-               
+                
                 if (kandidat != null && !string.IsNullOrEmpty(kandidat.ProfilnaSlika))
                 {
                     await _fileUploadService.DeleteImageAsync(kandidat.ProfilnaSlika);

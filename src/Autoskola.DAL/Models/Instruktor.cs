@@ -29,6 +29,9 @@ namespace Autoskola.DAL.Models
         [Range(0,100)]
         public int GodineIskustva { get; set; }
 
+        public string? ProfilnaSlika { get; set; }
+
+        public string ImePrezime => $"{Ime} {Prezime}";
 
         public ICollection<Cas> Casovi { get; set; }
         public ICollection<Ispit> Ispiti { get; set; }

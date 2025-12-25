@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Autoskola.DAL.Models.Instruktor>
+
+@{
+    ViewData["Title"] = "Lista Instruktora";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Lista Instruktora</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Uspeh!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Greška!</strong> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">
+            Dodaj Novog Instruktora
+        </a>
+    </p>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Slika</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>JMBG</th>
+                <th>Broj Licence</th>
+                <th>Godine Iskustva</th>
+                <th>Telefon</th>
+                <th>Email</th>
+                <th>Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                @foreach (var instruktor in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(instruktor.ProfilnaSlika))
+                            {
+                                <img src="@instruktor.ProfilnaSlika" alt="@instruktor.Ime @instruktor.Prezime" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; border-radius: 4px;">
+                                    <span>@(instruktor.Ime.Substring(0, 1))@(instruktor.Prezime.Substring(0, 1))</span>
+                                </div>
+                            }
+                        </td>
+                        <td>@instruktor.Ime</td>
+                        <td>@instruktor.Prezime</td>
+                        <td>@instruktor.JMBG</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(instruktor.BrojLicence))
+                            {
+                                <span class="badge bg-info">@instruktor.BrojLicence</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">-</span>
+                            }
+                        </td>
+                        <td>
+                            <span class="badge bg-success">@instruktor.GodineIskustva god.</span>
+                        </td>
+                        <td>@instruktor.Telefon</td>
+                        <td>@instruktor.Email</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@instruktor.Id" class="btn btn-info btn-sm">
+                                Detalji
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@instruktor.Id" class="btn btn-warning btn-sm">
+                                Izmeni
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@instruktor.Id" class="btn btn-danger btn-sm">
+                                Obriši
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" class="text-center">
+                        <em>Nema instruktora u bazi. Kliknite "Dodaj Novog Instruktora" da dodate prvog.</em>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

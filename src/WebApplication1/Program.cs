@@ -21,6 +21,7 @@ builder.Services.AddScoped<ICasService, CasService>();
 builder.Services.AddScoped<IIspitService, IspitService>();
 
 
+
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 
 var app = builder.Build();

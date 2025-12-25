@@ -31,7 +31,6 @@ namespace Autoskola.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BrojCasa")
-                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<DateOnly?>("Datum")
@@ -88,6 +87,9 @@ namespace Autoskola.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ProfilnaSlika")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Telefon")
                         .HasColumnType("nvarchar(max)");
 
@@ -103,6 +105,9 @@ namespace Autoskola.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Bodovi")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime2");
@@ -146,8 +151,8 @@ namespace Autoskola.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("DatumUpisa")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DatumUpisa")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -260,6 +265,34 @@ namespace Autoskola.DAL.Migrations
                     b.ToTable("Vozila");
                 });
 
+            modelBuilder.Entity("Autoskola.DAL.Models.VoziloSlika", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DatumDodavanja")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PutanjaDoSlike")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VoziloId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VoziloId");
+
+                    b.ToTable("VoziloSlike");
+                });
+
             modelBuilder.Entity("Autoskola.DAL.Models.Cas", b =>
                 {
                     b.HasOne("Autoskola.DAL.Models.Instruktor", "Instruktor")
@@ -345,6 +378,17 @@ namespace Autoskola.DAL.Migrations
                     b.Navigation("Kandidat");
                 });
 
+            modelBuilder.Entity("Autoskola.DAL.Models.VoziloSlika", b =>
+                {
+                    b.HasOne("Autoskola.DAL.Models.Vozilo", "Vozilo")
+                        .WithMany("Slike")
+                        .HasForeignKey("VoziloId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vozilo");
+                });
+
             modelBuilder.Entity("Autoskola.DAL.Models.Cas", b =>
                 {
                     b.Navigation("KandidatCasovi");
@@ -376,6 +420,8 @@ namespace Autoskola.DAL.Migrations
                     b.Navigation("Casovi");
 
                     b.Navigation("IspitVozila");
+
+                    b.Navigation("Slike");
                 });
 #pragma warning restore 612, 618
         }

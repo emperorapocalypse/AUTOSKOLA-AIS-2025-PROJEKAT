@@ -1,6 +1,7 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
-wwwroot\images\kandidati\2f14d3c7-9764-40cc-9476-0dbb24eac11b.jpg
+wwwroot\images\instruktori\4da9690b-b2e5-47dc-be13-a75c53c96129.png
+wwwroot\images\kandidati\ba792e61-6df1-4e55-a063-a667f9397832.jpg
 wwwroot\images\kandidati\f7c3928b-3c9f-4fc3-aa6b-10341e122deb.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
@@ -60,3 +61,5 @@ wwwroot\lib\jquery-validation\LICENSE.md
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\uploads\vozila\44581ffe-a20b-46f7-a762-5687e267ec59_2015-Honda-Civic-Sport-interior.png
+wwwroot\uploads\vozila\72b757de-8038-4f17-9b67-fe244a52d8e7_2015_honda_civic_si_sedan_01.png

@@ -1,0 +1,137 @@
+﻿@model Autoskola.DAL.Models.Instruktor
+
+@{
+    ViewData["Title"] = "Izmeni Instruktora";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Izmeni Instruktora</h1>
+    <hr />
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                @* VAŽNO: Hidden polja *@
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ProfilnaSlika" />
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Ime" class="form-label">Ime *</label>
+                        <input asp-for="Ime" class="form-control" />
+                        <span asp-validation-for="Ime" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Prezime" class="form-label">Prezime *</label>
+                        <input asp-for="Prezime" class="form-control" />
+                        <span asp-validation-for="Prezime" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="JMBG" class="form-label">JMBG *</label>
+                    <input asp-for="JMBG" class="form-control" maxlength="13" />
+                    <span asp-validation-for="JMBG" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="BrojLicence" class="form-label">Broj Licence</label>
+                        <input asp-for="BrojLicence" class="form-control" maxlength="20" />
+                        <span asp-validation-for="BrojLicence" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="GodineIskustva" class="form-label">Godine Iskustva *</label>
+                        <input asp-for="GodineIskustva" class="form-control" type="number" min="0" max="100" />
+                        <span asp-validation-for="GodineIskustva" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Telefon" class="form-label">Telefon</label>
+                        <input asp-for="Telefon" class="form-control" />
+                        <span asp-validation-for="Telefon" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" type="email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Trenutna Profilna Slika</label>
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.ProfilnaSlika))
+                        {
+                            <img src="@Model.ProfilnaSlika" alt="Profilna slika" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+                        }
+                        else
+                        {
+                            <p class="text-muted">Nema postavljene slike</p>
+                        }
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="profilnaSlika" class="form-label">Promena Profilne Slike</label>
+                    <input type="file" name="profilnaSlika" id="profilnaSlika" class="form-control" accept="image/*" onchange="previewImage(event)" />
+                    <small class="text-muted">Ostavite prazno ako ne želite da promenite sliku</small>
+                </div>
+
+                <div class="mb-3">
+                    <img id="imagePreview" src="#" alt="Pregled nove slike" style="max-width: 200px; max-height: 200px; display: none;" class="img-thumbnail" />
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success">
+                        Sačuvaj Izmene
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Nazad
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <div class="alert alert-warning">
+                <h5>Pažnja:</h5>
+                <ul>
+                    <li>Menjate podatke za instruktora sa ID: <strong>@Model.Id</strong></li>
+                    <li>Ako uploadujete novu sliku, stara će biti obrisana</li>
+                    <li>Maksimalna veličina slike: 5MB</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}
