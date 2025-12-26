@@ -1,6 +1,7 @@
 ﻿using Autoskola.BLL.Interfaces;
-using Autoskola.MVC.Services;
 using Autoskola.DAL.Models;
+using Autoskola.MVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Autoskola.MVC.Controllers
@@ -18,14 +19,14 @@ namespace Autoskola.MVC.Controllers
             _fileUploadService = fileUploadService;
         }
 
-        // GET: Kandidat/Index
+        
         public async Task<IActionResult> Index()
         {
             var kandidati = await _kandidatService.GetAllAsync();
             return View(kandidati);
         }
 
-        // GET: Kandidat/Details/5
+        
         public async Task<IActionResult> Details(int id)
         {
             var kandidat = await _kandidatService.GetByIdAsync(id);
@@ -35,14 +36,15 @@ namespace Autoskola.MVC.Controllers
             return View(kandidat);
         }
 
-        // GET: Kandidat/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Kandidat/Create
+        
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Kandidat kandidat, IFormFile profilnaSlika)
         {
@@ -50,7 +52,7 @@ namespace Autoskola.MVC.Controllers
             {
                 ModelState.Clear();
 
-                // Upload slike ako je poslata
+                
                 if (profilnaSlika != null && profilnaSlika.Length > 0)
                 {
                     kandidat.ProfilnaSlika = await _fileUploadService.UploadImageAsync(profilnaSlika, "kandidati");
@@ -68,7 +70,7 @@ namespace Autoskola.MVC.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var kandidat = await _kandidatService.GetByIdAsync(id);
@@ -83,6 +85,7 @@ namespace Autoskola.MVC.Controllers
 
         
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Kandidat kandidat, IFormFile profilnaSlika)
         {
@@ -120,7 +123,7 @@ namespace Autoskola.MVC.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var kandidat = await _kandidatService.GetByIdAsync(id);
@@ -132,6 +135,7 @@ namespace Autoskola.MVC.Controllers
 
         
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

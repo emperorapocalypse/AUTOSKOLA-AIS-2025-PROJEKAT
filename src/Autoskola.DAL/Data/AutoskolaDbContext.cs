@@ -1,32 +1,32 @@
-﻿using Autoskola.DAL.Models;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Autoskola.DAL.Models;
 
 namespace Autoskola.DAL.Data
 {
-    public class AutoskolaDbContext : DbContext
+    public class AutoskolaDbContext : IdentityDbContext<ApplicationUser>
     {
         public AutoskolaDbContext(DbContextOptions<AutoskolaDbContext> options)
             : base(options)
         {
         }
 
-    
+        
         public DbSet<Kandidat> Kandidati { get; set; }
         public DbSet<Instruktor> Instruktori { get; set; }
         public DbSet<Vozilo> Vozila { get; set; }
+        public DbSet<VoziloSlika> VoziloSlike { get; set; }
         public DbSet<Cas> Casovi { get; set; }
         public DbSet<Ispit> Ispiti { get; set; }
         public DbSet<KandidatCas> KandidatCasovi { get; set; }
         public DbSet<KandidatIspit> KandidatIspiti { get; set; }
         public DbSet<IspitVozilo> IspitVozila { get; set; }
 
-        public DbSet<VoziloSlika> VoziloSlike { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-         
+           
             modelBuilder.Entity<KandidatCas>()
                 .HasKey(kc => new { kc.KandidatId, kc.CasId });
 
@@ -40,7 +40,6 @@ namespace Autoskola.DAL.Data
                 .WithMany(c => c.KandidatCasovi)
                 .HasForeignKey(kc => kc.CasId);
 
-           
             modelBuilder.Entity<KandidatIspit>()
                 .HasKey(ki => new { ki.KandidatId, ki.IspitId });
 
@@ -54,7 +53,6 @@ namespace Autoskola.DAL.Data
                 .WithMany(i => i.KandidatIspiti)
                 .HasForeignKey(ki => ki.IspitId);
 
-            
             modelBuilder.Entity<IspitVozilo>()
                 .HasKey(iv => new { iv.IspitId, iv.VoziloId });
 
@@ -68,31 +66,13 @@ namespace Autoskola.DAL.Data
                 .WithMany(v => v.IspitVozila)
                 .HasForeignKey(iv => iv.VoziloId);
 
-           
-            modelBuilder.Entity<Cas>()
-                .HasOne(c => c.Instruktor)
-                .WithMany(i => i.Casovi)
-                .HasForeignKey(c => c.InstruktorId)
-                .OnDelete(DeleteBehavior.SetNull);
+            
+            SeedRolesAndAdmin(modelBuilder);
+        }
 
-            modelBuilder.Entity<Cas>()
-                .HasOne(c => c.Vozilo)
-                .WithMany(v => v.Casovi)
-                .HasForeignKey(c => c.VoziloId)
-                .OnDelete(DeleteBehavior.SetNull);
-
-          
-            modelBuilder.Entity<Ispit>()
-                .HasOne(i => i.Instruktor)
-                .WithMany(ins => ins.Ispiti)
-                .HasForeignKey(i => i.InstruktorId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<VoziloSlika>()
-                .HasOne(vs => vs.Vozilo)
-                .WithMany(v => v.Slike)
-                .HasForeignKey(vs => vs.VoziloId)
-                .OnDelete(DeleteBehavior.Cascade);
+        private void SeedRolesAndAdmin(ModelBuilder modelBuilder)
+        {
+            
         }
     }
 }

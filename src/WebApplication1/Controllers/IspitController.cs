@@ -1,9 +1,11 @@
 ﻿using Autoskola.BLL.Interfaces;
 using Autoskola.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Autoskola.Controllers
 {
+    [Authorize]
     public class IspitController : Controller
     {
         private readonly IIspitService _ispitService;
@@ -31,7 +33,7 @@ namespace Autoskola.Controllers
             return View(ispit);
         }
 
-        
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create()
         {
             ViewBag.InstruktoriLista = await _ispitService.GetAllInstruktoriAsync();
@@ -42,6 +44,7 @@ namespace Autoskola.Controllers
 
       
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Ispit ispit, int kandidatId, List<int>? selectedVozila)
         {
@@ -69,7 +72,7 @@ namespace Autoskola.Controllers
             return View(ispit);
         }
 
-        
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var ispit = await _ispitService.GetByIdAsync(id);
@@ -90,6 +93,7 @@ namespace Autoskola.Controllers
 
         
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Ispit ispit, int kandidatId, List<int>? selectedVozila)
         {
@@ -125,7 +129,7 @@ namespace Autoskola.Controllers
             return View(ispit);
         }
 
-       
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var ispit = await _ispitService.GetByIdAsync(id);
@@ -139,6 +143,7 @@ namespace Autoskola.Controllers
 
         
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

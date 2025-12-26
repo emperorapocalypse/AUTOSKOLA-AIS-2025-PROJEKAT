@@ -1,0 +1,185 @@
+﻿@model Autoskola.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Kreiraj Korisnika";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user-plus"></i> Kreiraj Novog Korisnika
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> @TempData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                        <!-- Tip korisnika -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-users"></i> Tip Korisnika
+                            </label>
+                            <div class="btn-group w-100" role="group" id="userTypeButtons">
+                                <input type="radio" class="btn-check" name="userType" id="typeAdmin" value="admin" checked>
+                                <label class="btn btn-outline-success" for="typeAdmin">
+                                    <i class="fas fa-user-shield"></i> Administrator
+                                </label>
+
+                                <input type="radio" class="btn-check" name="userType" id="typeKandidat" value="kandidat">
+                                <label class="btn btn-outline-primary" for="typeKandidat">
+                                    <i class="fas fa-user-graduate"></i> Kandidat
+                                </label>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <!-- Osnovni podaci -->
+                        <h5 class="mb-3"><i class="fas fa-info-circle"></i> Osnovni Podaci</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Ime" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input asp-for="Ime" class="form-control" placeholder="Unesite ime" />
+                                </div>
+                                <span asp-validation-for="Ime" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Prezime" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input asp-for="Prezime" class="form-control" placeholder="Unesite prezime" />
+                                </div>
+                                <span asp-validation-for="Prezime" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Nalog podaci -->
+                        <h5 class="mb-3 mt-4"><i class="fas fa-lock"></i> Podaci za Prijavu</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Username" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                    <input asp-for="Username" class="form-control" placeholder="Korisničko ime" />
+                                </div>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                                <small class="text-muted">Korisničko ime za prijavu u sistem</small>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input asp-for="Email" class="form-control" placeholder="primer@email.com" />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Password" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input asp-for="Password" class="form-control" placeholder="••••••••" />
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <small class="text-muted">Minimum 6 karaktera</small>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ConfirmPassword" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="••••••••" />
+                                </div>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Sekcija za kandidata - samo ako je izabran kandidat -->
+                        <div id="kandidatSection" style="display: none;">
+                            <hr />
+                            <h5 class="mb-3"><i class="fas fa-link"></i> Povežite sa Kandidatom</h5>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i> 
+                                Izaberite postojećeg kandidata iz baze da bi mu kreirali nalog za pristup.
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Izaberi Kandidata</label>
+                                <select asp-for="KandidatId" class="form-select" id="kandidatSelect">
+                                    <option value="">-- Izaberi kandidata --</option>
+                                    @if(ViewBag.Kandidati != null)
+                                    {
+                                        @foreach (var kandidat in ViewBag.Kandidati)
+                                        {
+                                            <option value="@kandidat.Id">@kandidat.Ime @kandidat.Prezime (@kandidat.JMBG)</option>
+                                        }
+                                    }
+                                </select>
+                                <small class="text-muted">Ovaj kandidat će moći da se prijavi sa kreiranim nalogom</small>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <!-- Dugmad -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Kreiraj Korisnika
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Otkaži
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Toggle kandidat sekcije
+        const typeAdmin = document.getElementById('typeAdmin');
+        const typeKandidat = document.getElementById('typeKandidat');
+        const kandidatSection = document.getElementById('kandidatSection');
+        const kandidatSelect = document.getElementById('kandidatSelect');
+
+        function toggleKandidatSection() {
+            if (typeKandidat.checked) {
+                kandidatSection.style.display = 'block';
+                kandidatSelect.required = true;
+            } else {
+                kandidatSection.style.display = 'none';
+                kandidatSelect.required = false;
+                kandidatSelect.value = '';
+            }
+        }
+
+        typeAdmin.addEventListener('change', toggleKandidatSection);
+        typeKandidat.addEventListener('change', toggleKandidatSection);
+        
+        // Inicijalizacija
+        toggleKandidatSection();
+    </script>
+}

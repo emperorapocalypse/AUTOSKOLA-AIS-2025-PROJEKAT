@@ -1,5 +1,6 @@
 ﻿using Autoskola.BLL.Interfaces;
 using Autoskola.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Autoskola.MVC.Controllers
@@ -15,14 +16,14 @@ namespace Autoskola.MVC.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Vozilo
+        
         public async Task<IActionResult> Index()
         {
             var vozila = await _voziloService.GetAllAsync();
             return View(vozila);
         }
 
-        // GET: Vozilo/Details/5
+        
         public async Task<IActionResult> Details(int id)
         {
             var vozilo = await _voziloService.GetByIdAsync(id);
@@ -34,14 +35,15 @@ namespace Autoskola.MVC.Controllers
             return View(vozilo);
         }
 
-        // GET: Vozilo/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Vozilo/Create
+        
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vozilo vozilo, List<IFormFile>? slike, List<string>? opisiSlika)
         {
@@ -53,10 +55,10 @@ namespace Autoskola.MVC.Controllers
             {
                 try
                 {
-                    // Sačuvaj vozilo prvo
+                    
                     await _voziloService.AddAsync(vozilo);
 
-                    // Dodaj slike ako postoje
+                    
                     if (slike != null && slike.Any())
                     {
                         await SaveVoziloSlike(vozilo.Id, slike, opisiSlika);
@@ -74,7 +76,7 @@ namespace Autoskola.MVC.Controllers
             return View(vozilo);
         }
 
-        // GET: Vozilo/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var vozilo = await _voziloService.GetByIdAsync(id);
@@ -86,8 +88,9 @@ namespace Autoskola.MVC.Controllers
             return View(vozilo);
         }
 
-        // POST: Vozilo/Edit/5
+        
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Vozilo vozilo, List<IFormFile>? noveSlike, List<string>? opisiNovihSlika)
         {
@@ -106,7 +109,7 @@ namespace Autoskola.MVC.Controllers
                 {
                     await _voziloService.UpdateAsync(vozilo);
 
-                    // Dodaj nove slike ako postoje
+                    
                     if (noveSlike != null && noveSlike.Any())
                     {
                         await SaveVoziloSlike(vozilo.Id, noveSlike, opisiNovihSlika);
@@ -121,14 +124,14 @@ namespace Autoskola.MVC.Controllers
                 }
             }
 
-            // Ponovo učitaj vozilo sa slikama za prikaz
+            
             var voziloSaSlikama = await _voziloService.GetByIdAsync(id);
             vozilo.Slike = voziloSaSlikama?.Slike;
 
             return View(vozilo);
         }
 
-        // GET: Vozilo/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var vozilo = await _voziloService.GetByIdAsync(id);
@@ -140,8 +143,9 @@ namespace Autoskola.MVC.Controllers
             return View(vozilo);
         }
 
-        // POST: Vozilo/Delete/5
+        
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -150,7 +154,7 @@ namespace Autoskola.MVC.Controllers
                 var vozilo = await _voziloService.GetByIdAsync(id);
                 if (vozilo != null)
                 {
-                    // Obriši sve slike sa diska
+                    
                     if (vozilo.Slike != null && vozilo.Slike.Any())
                     {
                         foreach (var slika in vozilo.Slike)
@@ -170,8 +174,9 @@ namespace Autoskola.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: Vozilo/DeleteImage/5
+        
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteImage(int id)
         {
             try
@@ -182,10 +187,10 @@ namespace Autoskola.MVC.Controllers
                     return Json(new { success = false, message = "Slika nije pronađena." });
                 }
 
-                // Obriši fajl sa diska
+                
                 DeleteImageFile(slika.PutanjaDoSlike);
 
-                // Obriši iz baze
+                
                 await _voziloService.DeleteSlikaAsync(id);
 
                 return Json(new { success = true });
@@ -196,12 +201,12 @@ namespace Autoskola.MVC.Controllers
             }
         }
 
-        // Helper metode
+        [Authorize(Roles = "Administrator")]
         private async Task SaveVoziloSlike(int voziloId, List<IFormFile> slike, List<string>? opisi)
         {
             string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "vozila");
 
-            // Kreiraj folder ako ne postoji
+            
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
@@ -231,7 +236,7 @@ namespace Autoskola.MVC.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Administrator")]
         private void DeleteImageFile(string imagePath)
         {
             if (!string.IsNullOrEmpty(imagePath))

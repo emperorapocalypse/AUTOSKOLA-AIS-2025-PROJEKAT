@@ -1,6 +1,7 @@
 ﻿using Autoskola.BLL.Interfaces;
-using Autoskola.MVC.Services;
 using Autoskola.DAL.Models;
+using Autoskola.MVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Autoskola.MVC.Controllers
@@ -35,7 +36,7 @@ namespace Autoskola.MVC.Controllers
             return View(instruktor);
         }
 
-       
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +44,7 @@ namespace Autoskola.MVC.Controllers
 
        
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Instruktor instruktor, IFormFile profilnaSlika)
         {
@@ -68,7 +70,7 @@ namespace Autoskola.MVC.Controllers
             }
         }
 
-        
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var instruktor = await _instruktorService.GetByIdAsync(id);
@@ -83,6 +85,7 @@ namespace Autoskola.MVC.Controllers
 
       
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Instruktor instruktor, IFormFile profilnaSlika)
         {
@@ -97,7 +100,7 @@ namespace Autoskola.MVC.Controllers
               
                 if (profilnaSlika != null && profilnaSlika.Length > 0)
                 {
-                    // Obriši staru sliku ako postoji
+                    
                     if (!string.IsNullOrEmpty(instruktor.ProfilnaSlika))
                     {
                         await _fileUploadService.DeleteImageAsync(instruktor.ProfilnaSlika);
@@ -119,7 +122,7 @@ namespace Autoskola.MVC.Controllers
             }
         }
 
-      
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var instruktor = await _instruktorService.GetByIdAsync(id);
@@ -131,6 +134,7 @@ namespace Autoskola.MVC.Controllers
 
         
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -138,7 +142,7 @@ namespace Autoskola.MVC.Controllers
             {
                 var instruktor = await _instruktorService.GetByIdAsync(id);
 
-                // Obriši sliku ako postoji
+                
                 if (instruktor != null && !string.IsNullOrEmpty(instruktor.ProfilnaSlika))
                 {
                     await _fileUploadService.DeleteImageAsync(instruktor.ProfilnaSlika);

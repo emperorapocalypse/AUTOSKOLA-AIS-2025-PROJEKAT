@@ -1,10 +1,12 @@
 ﻿using Autoskola.BLL.Interfaces;
 using Autoskola.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Autoskola.MVC.Controllers
 {
+    [Authorize]
     public class CasController : Controller
     {
         private readonly ICasService _casService;
@@ -33,7 +35,7 @@ namespace Autoskola.MVC.Controllers
             return View(cas);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Create()
         {
             var instruktori = await _casService.GetAllInstruktoriAsync();
@@ -48,6 +50,7 @@ namespace Autoskola.MVC.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Cas cas, List<int>? selectedKandidati)
         {
@@ -80,7 +83,7 @@ namespace Autoskola.MVC.Controllers
             return View(cas);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var cas = await _casService.GetByIdAsync(id);
@@ -103,6 +106,7 @@ namespace Autoskola.MVC.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Cas cas, List<int>? selectedKandidati)
         {
@@ -111,7 +115,7 @@ namespace Autoskola.MVC.Controllers
                 return NotFound();
             }
 
-            // KRITIČNO: Ukloni validaciju za navigation properties
+            
             ModelState.Remove("Instruktor");
             ModelState.Remove("Vozilo");
             ModelState.Remove("KandidatCasovi");
@@ -120,7 +124,7 @@ namespace Autoskola.MVC.Controllers
             {
                 try
                 {
-                    // Očitaj prisustva i napomene iz forme
+                    
                     var kandidatCasoviData = new List<(int KandidatId, bool Prisustvovao, string? Napomena)>();
 
                     if (selectedKandidati != null)
@@ -145,7 +149,7 @@ namespace Autoskola.MVC.Controllers
             }
             else
             {
-                // Debug - prikaži greške
+                
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
                 TempData["ErrorMessage"] = "Greške validacije: " + string.Join(", ", errors);
             }
@@ -161,7 +165,7 @@ namespace Autoskola.MVC.Controllers
             return View(cas);
         }
 
-
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var cas = await _casService.GetByIdAsync(id);
@@ -175,6 +179,7 @@ namespace Autoskola.MVC.Controllers
 
         
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
