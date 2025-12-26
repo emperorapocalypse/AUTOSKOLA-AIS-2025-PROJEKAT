@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Autoskola.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49a50f42bd4683623884b12e50241bc2da3f3954")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a84bf29052ac0a6ba233fd34a3433417b1cf226")]
 [assembly: System.Reflection.AssemblyProductAttribute("Autoskola.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Autoskola.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,9 +15,11 @@ namespace Autoskola.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _ispitService.GetAllAsync());
+            var ispiti = await _ispitService.GetAllAsync();
+            return View(ispiti);
         }
 
+       
         public async Task<IActionResult> Details(int id)
         {
             var ispit = await _ispitService.GetByIdAsync(id);
@@ -29,14 +31,16 @@ namespace Autoskola.Controllers
             return View(ispit);
         }
 
+        
         public async Task<IActionResult> Create()
         {
-            ViewBag.InstruktoriLista = (await _ispitService.GetAllInstruktoriAsync()).ToList();
-            ViewBag.VozilaLista = (await _ispitService.GetAllVozilaAsync()).ToList();
+            ViewBag.InstruktoriLista = await _ispitService.GetAllInstruktoriAsync();
+            ViewBag.VozilaLista = await _ispitService.GetAllVozilaAsync();
             ViewBag.Kandidati = await _ispitService.GetAllKandidatiAsync();
             return View();
         }
 
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Ispit ispit, int kandidatId, List<int>? selectedVozila)
@@ -59,12 +63,13 @@ namespace Autoskola.Controllers
                 }
             }
 
-            ViewBag.InstruktoriLista = (await _ispitService.GetAllInstruktoriAsync()).ToList();
-            ViewBag.VozilaLista = (await _ispitService.GetAllVozilaAsync()).ToList();
+            ViewBag.InstruktoriLista = await _ispitService.GetAllInstruktoriAsync();
+            ViewBag.VozilaLista = await _ispitService.GetAllVozilaAsync();
             ViewBag.Kandidati = await _ispitService.GetAllKandidatiAsync();
             return View(ispit);
         }
 
+        
         public async Task<IActionResult> Edit(int id)
         {
             var ispit = await _ispitService.GetByIdAsync(id);
@@ -74,19 +79,24 @@ namespace Autoskola.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.InstruktoriLista = (await _ispitService.GetAllInstruktoriAsync()).ToList();
-            ViewBag.VozilaLista = (await _ispitService.GetAllVozilaAsync()).ToList();
+            ViewBag.InstruktoriLista = await _ispitService.GetAllInstruktoriAsync();
+            ViewBag.VozilaLista = await _ispitService.GetAllVozilaAsync();
             ViewBag.Kandidati = await _ispitService.GetAllKandidatiAsync();
             ViewBag.SelectedKandidatId = ispit.KandidatIspiti.FirstOrDefault()?.KandidatId ?? 0;
             ViewBag.SelectedVozila = ispit.IspitVozila.Select(iv => iv.VoziloId).ToList();
+
             return View(ispit);
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Ispit ispit, int kandidatId, List<int>? selectedVozila)
         {
-            if (id != ispit.Id) return NotFound();
+            if (id != ispit.Id)
+            {
+                return NotFound();
+            }
 
             ModelState.Remove("Instruktor");
             ModelState.Remove("KandidatIspiti");
@@ -97,7 +107,7 @@ namespace Autoskola.Controllers
                 try
                 {
                     await _ispitService.UpdateAsync(ispit, kandidatId, selectedVozila);
-                    TempData["SuccessMessage"] = "Ispit ažuriran!";
+                    TempData["SuccessMessage"] = "Ispit uspešno ažuriran!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -106,14 +116,16 @@ namespace Autoskola.Controllers
                 }
             }
 
-            ViewBag.InstruktoriLista = (await _ispitService.GetAllInstruktoriAsync()).ToList();
-            ViewBag.VozilaLista = (await _ispitService.GetAllVozilaAsync()).ToList();
+            ViewBag.InstruktoriLista = await _ispitService.GetAllInstruktoriAsync();
+            ViewBag.VozilaLista = await _ispitService.GetAllVozilaAsync();
             ViewBag.Kandidati = await _ispitService.GetAllKandidatiAsync();
             ViewBag.SelectedKandidatId = kandidatId;
             ViewBag.SelectedVozila = selectedVozila;
+
             return View(ispit);
         }
 
+       
         public async Task<IActionResult> Delete(int id)
         {
             var ispit = await _ispitService.GetByIdAsync(id);
@@ -125,6 +137,7 @@ namespace Autoskola.Controllers
             return View(ispit);
         }
 
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -132,11 +145,11 @@ namespace Autoskola.Controllers
             try
             {
                 await _ispitService.DeleteAsync(id);
-                TempData["SuccessMessage"] = "Ispit obrisan!";
+                TempData["SuccessMessage"] = "Ispit uspešno obrisan!";
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"Greška: {ex.Message}";
+                TempData["ErrorMessage"] = $"Greška prilikom brisanja: {ex.Message}";
             }
             return RedirectToAction(nameof(Index));
         }

@@ -1,0 +1,204 @@
+﻿@model Autoskola.DAL.Models.Ispit
+@{
+    ViewData["Title"] = "Obriši Ispit";
+    var kandidat = Model.KandidatIspiti.FirstOrDefault()?.Kandidat;
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Potvrda Brisanja
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if(TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> @TempData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>Upozorenje!</strong> Da li ste sigurni da želite da obrišete ovaj ispit?
+                        Ova akcija je <strong>nepovratna</strong>.
+                    </div>
+
+                    <!-- Detalji ispita -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <i class="fas fa-clipboard-check"></i> Podaci o ispitu:
+                            </h5>
+                            
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-hashtag"></i> ID:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    @Model.Id
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-calendar-alt"></i> Datum:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    @Model.Datum.ToString("dd.MM.yyyy")
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-list"></i> Tip:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="badge @(Model.TipIspita == Autoskola.DAL.Models.TipIspita.Teorijski ? "bg-info" : "bg-warning text-dark")">
+                                        @Model.TipIspita
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-star"></i> Bodovi:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="@(Model.Polozen ? "text-success" : "text-danger") fw-bold">
+                                        @Model.Bodovi/100
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-check-circle"></i> Status:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    <span class="badge @(Model.Polozen ? "bg-success" : "bg-danger")">
+                                        @(Model.Polozen ? "✓ Položen" : "✗ Pao")
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-user-graduate"></i> Kandidat:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    @if(kandidat != null)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            @if(!string.IsNullOrEmpty(kandidat.ProfilnaSlika))
+                                            {
+                                                <img src="@kandidat.ProfilnaSlika" 
+                                                     alt="@kandidat.Ime" 
+                                                     class="rounded-circle me-2" 
+                                                     style="width: 35px; height: 35px; object-fit: cover;"
+                                                     onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
+                                                <div class="avatar-circle bg-primary text-white me-2" style="display:none;">
+                                                    @kandidat.Ime.Substring(0, 1)@kandidat.Prezime.Substring(0, 1)
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="avatar-circle bg-primary text-white me-2">
+                                                    @kandidat.Ime.Substring(0, 1)@kandidat.Prezime.Substring(0, 1)
+                                                </div>
+                                            }
+                                            <span>@kandidat.Ime @kandidat.Prezime</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <strong><i class="fas fa-chalkboard-teacher"></i> Instruktor:</strong>
+                                </div>
+                                <div class="col-md-8">
+                                    @if(Model.Instruktor != null)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            @if(!string.IsNullOrEmpty(Model.Instruktor.ProfilnaSlika))
+                                            {
+                                                <img src="@Model.Instruktor.ProfilnaSlika" 
+                                                     alt="@Model.Instruktor.Ime" 
+                                                     class="rounded-circle me-2" 
+                                                     style="width: 35px; height: 35px; object-fit: cover;"
+                                                     onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='inline-flex';" />
+                                                <div class="avatar-circle bg-success text-white me-2" style="display:none;">
+                                                    @Model.Instruktor.Ime.Substring(0, 1)@Model.Instruktor.Prezime.Substring(0, 1)
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="avatar-circle bg-success text-white me-2">
+                                                    @Model.Instruktor.Ime.Substring(0, 1)@Model.Instruktor.Prezime.Substring(0, 1)
+                                                </div>
+                                            }
+                                            <span>@Model.Instruktor.Ime @Model.Instruktor.Prezime</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">N/A</span>
+                                    }
+                                </div>
+                            </div>
+
+                            @if(Model.TipIspita == Autoskola.DAL.Models.TipIspita.Praktican)
+                            {
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <strong><i class="fas fa-car"></i> Vozila:</strong>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="badge bg-secondary">
+                                            @Model.IspitVozila.Count vozila
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Form za brisanje -->
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Da, obriši ispit
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Ne, otkaži
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 12px;
+    }
+</style>

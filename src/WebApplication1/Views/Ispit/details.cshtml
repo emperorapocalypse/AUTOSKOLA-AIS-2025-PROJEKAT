@@ -1,0 +1,256 @@
+﻿@model Autoskola.DAL.Models.Ispit
+@{
+    ViewData["Title"] = "Detalji Ispita";
+    var kandidat = Model.KandidatIspiti.FirstOrDefault()?.Kandidat;
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-info-circle"></i> Detalji Ispita #@Model.Id
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Status Badge -->
+                    <div class="text-center mb-4">
+                        <span class="badge @(Model.Polozen ? "bg-success" : "bg-danger") fs-5 px-4 py-2">
+                            @if(Model.Polozen)
+                            {
+                                <i class="fas fa-trophy"></i> <text>POLOŽEN</text>
+                            }
+                            else
+                            {
+                                <i class="fas fa-times-circle"></i> <text>PAO</text>
+                            }
+                        </span>
+                    </div>
+
+                    <!-- Osnovne informacije -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-1">
+                                        <i class="fas fa-calendar-alt"></i> Datum
+                                    </h6>
+                                    <h5>@Model.Datum.ToString("dd.MM.yyyy")</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-1">
+                                        <i class="fas fa-list"></i> Tip Ispita
+                                    </h6>
+                                    <h5>
+                                        <span class="badge @(Model.TipIspita == Autoskola.DAL.Models.TipIspita.Teorijski ? "bg-info" : "bg-warning text-dark") fs-6">
+                                            @(Model.TipIspita == Autoskola.DAL.Models.TipIspita.Teorijski ? "📝 Teorijski" : "🚗 Praktičan")
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-1">
+                                        <i class="fas fa-star"></i> Bodovi
+                                    </h6>
+                                    <h5 class="@(Model.Polozen ? "text-success" : "text-danger")">
+                                        @Model.Bodovi / 100
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-1">
+                                        <i class="fas fa-percentage"></i> Procenat
+                                    </h6>
+                                    <h5>@Model.Bodovi%</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <!-- Učesnici -->
+                    <h5 class="mb-3"><i class="fas fa-users"></i> Učesnici</h5>
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    @if(kandidat != null)
+                                    {
+                                        @if(!string.IsNullOrEmpty(kandidat.ProfilnaSlika))
+                                        {
+                                            <img src="@kandidat.ProfilnaSlika" 
+                                                 alt="@kandidat.Ime" 
+                                                 class="rounded-circle mx-auto mb-3" 
+                                                 style="width: 100px; height: 100px; object-fit: cover; display: block;"
+                                                 onerror="this.style.display='none'; document.getElementById('kandidat-fallback').style.display='flex';" />
+                                        }
+                                        <div id="kandidat-fallback" class="avatar-large bg-primary text-white mx-auto mb-3" style="display: @(string.IsNullOrEmpty(kandidat.ProfilnaSlika) ? "flex" : "none");">
+                                            @kandidat.Ime.Substring(0, 1)@kandidat.Prezime.Substring(0, 1)
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            <i class="fas fa-user-graduate"></i> Kandidat
+                                        </h6>
+                                        <h5 class="card-title">@kandidat.Ime @kandidat.Prezime</h5>
+                                        <p class="mb-0 small text-muted">
+                                            <i class="fas fa-id-card"></i> JMBG: @kandidat.JMBG
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <div class="avatar-large bg-secondary text-white mx-auto mb-3">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            <i class="fas fa-user-graduate"></i> Kandidat
+                                        </h6>
+                                        <p class="text-muted mb-0">Podaci nisu dostupni</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    @if(Model.Instruktor != null)
+                                    {
+                                        @if(!string.IsNullOrEmpty(Model.Instruktor.ProfilnaSlika))
+                                        {
+                                            <img src="@Model.Instruktor.ProfilnaSlika" 
+                                                 alt="@Model.Instruktor.Ime" 
+                                                 class="rounded-circle mx-auto mb-3" 
+                                                 style="width: 100px; height: 100px; object-fit: cover; display: block;"
+                                                 onerror="this.style.display='none'; document.getElementById('instruktor-fallback').style.display='flex';" />
+                                        }
+                                        <div id="instruktor-fallback" class="avatar-large bg-success text-white mx-auto mb-3" style="display: @(string.IsNullOrEmpty(Model.Instruktor.ProfilnaSlika) ? "flex" : "none");">
+                                            @Model.Instruktor.Ime.Substring(0, 1)@Model.Instruktor.Prezime.Substring(0, 1)
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            <i class="fas fa-chalkboard-teacher"></i> Instruktor
+                                        </h6>
+                                        <h5 class="card-title">@Model.Instruktor.Ime @Model.Instruktor.Prezime</h5>
+                                        <p class="mb-0 small text-muted">
+                                            <i class="fas fa-id-card"></i> JMBG: @Model.Instruktor.JMBG
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <div class="avatar-large bg-secondary text-white mx-auto mb-3">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-muted">
+                                            <i class="fas fa-chalkboard-teacher"></i> Instruktor
+                                        </h6>
+                                        <p class="text-muted mb-0">Podaci nisu dostupni</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vozila (samo za praktičan ispit) -->
+                    @if(Model.TipIspita == Autoskola.DAL.Models.TipIspita.Praktican && Model.IspitVozila.Any())
+                    {
+                        <hr />
+                        <h5 class="mb-3">
+                            <i class="fas fa-car"></i> Vozila korišćena na ispitu
+                            <span class="badge bg-secondary">@Model.IspitVozila.Count</span>
+                        </h5>
+                        <div class="row">
+                            @foreach (var iv in Model.IspitVozila)
+                            {
+                                var v = iv.Vozilo;
+                                var prvaSlika = v.Slike?.FirstOrDefault()?.PutanjaDoSlike;
+                                
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        @if(!string.IsNullOrEmpty(prvaSlika))
+                                        {
+                                            <img src="@prvaSlika" 
+                                                 class="card-img-top" 
+                                                 alt="@v.Model" 
+                                                 style="height: 200px; object-fit: cover;"
+                                                 onerror="this.onerror=null; this.outerHTML='<div class=\'card-img-top bg-secondary d-flex align-items-center justify-content-center\' style=\'height: 200px;\'><i class=\'fas fa-car fa-3x text-white\'></i></div>';" />
+                                        }
+                                        else
+                                        {
+                                            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" 
+                                                 style="height: 200px;">
+                                                <i class="fas fa-car fa-3x text-white"></i>
+                                            </div>
+                                        }
+                                        <div class="card-body">
+                                            <h6 class="card-title">
+                                                <i class="fas fa-car text-primary"></i> @v.Marka @v.Model
+                                            </h6>
+                                            <p class="card-text small mb-1">
+                                                <i class="fas fa-hashtag text-muted"></i> 
+                                                <strong>Registracija:</strong> @v.Registracija
+                                            </p>
+                                            @if(v.GodinaProizvodnje.HasValue)
+                                            {
+                                                <p class="card-text small mb-1">
+                                                    <i class="fas fa-calendar text-muted"></i> 
+                                                    <strong>Godište:</strong> @v.GodinaProizvodnje
+                                                </p>
+                                            }
+                                            <p class="card-text small mb-0">
+                                                <i class="fas fa-gas-pump text-muted"></i> 
+                                                <strong>Gorivo:</strong>
+                                                <span class="badge bg-info">@v.TipGoriva</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <hr />
+
+                    <!-- Akcije -->
+                    <div class="d-flex gap-2">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Izmeni
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Obriši
+                        </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Nazad na listu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-large {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 36px;
+        margin: 0 auto;
+    }
+</style>
