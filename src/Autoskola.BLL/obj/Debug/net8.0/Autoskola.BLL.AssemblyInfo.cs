@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Autoskola.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2236189393b68c2d68756435f8d5c11a67f78cbc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3e5e3876a7c33b5aae263463c7a01c0f7321ee6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Autoskola.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Autoskola.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
